@@ -2,6 +2,8 @@
 -- 
 --   Cockpit++ GitHub project
 --   https://github.com/Margouill/CockpitPP
+--   
+--   Version : 1.5
 --
 ----------------------------------------------------------------------------------
 --   Started by Astazou in 2017 and rovered by Margouill in 2020.
