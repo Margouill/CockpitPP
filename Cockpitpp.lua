@@ -1,21 +1,18 @@
 ----------------------------------------------------------------------------------
+-- 
+--   Cockpit++ GitHub project
+--   https://github.com/Margouill/CockpitPP
 --
---                          []                         []
---                          ||   ___     ___     ___   ||
---                          ||  /   \   /| |\   /   \  ||
---                          || |  O  |__|| ||__|  O  | ||
---                          ||  \___/--/^^^^^\--\___/  ||
---                      __  ||________|       |________||  __
---   .-----------------/  \-++--------|   .   |--------++-/  \-----------------.
---  /.---------________|  |___________\__(*)__/___________|  |________---------.\
---            |    |   '$$'   |                       |   '$$'   |    |
---           (o)  (o)        (o)                     (o)        (o)  (o)
---
--- Because we all love the BBBBBBBBRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRTTTTTTTTTTTTTT
---
--- AsciiArt A-10 Thunderbolt II from: Mike Whaley, Georgia Tech, 
--- source: http://xcski.com/~ptomblin/planes.txt
 ----------------------------------------------------------------------------------
+--   Started by Astazou in 2017 and rovered by Margouill in 2020.
+----------------------------------------------------------------------------------
+--
+-- Cockpit++.lua
+-- DCS data export script
+--
+----------------------------------------------------------------------------------
+
+
 
 
 
@@ -30,7 +27,7 @@ local clientIP={"192.168.1.12"}
 
 --Editable but not mandatory, put them in the app
 local DCS_PORT = 14801
-local ANDROID_PORT = 14800
+local ANDROID_PORT = 14800 
 ----------------------------------------------------------------------------------
 
 
