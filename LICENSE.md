@@ -33,7 +33,7 @@ and/or modify the software.
 improvements made in alternate versions of the program, if they
 receive widespread use, become available for other developers to
 incorporate.  Many developers of free software are heartened and
-encouraged by the resulting cooperation.  However, in the case of
+encouraged by the resulting cooperation.  However, in the case of 
 software used on network servers, this result may fail to come about.
 The GNU General Public License permits making a modified version and
 letting the public access it on a server without ever releasing its
