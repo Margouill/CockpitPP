@@ -69,7 +69,7 @@ Main Components
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: #FF3D7F;
+  background-color: #43ff3d;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
   -ms-transform: scaleX(0);
@@ -101,8 +101,14 @@ Main Components
   transform: translateZ(0);
   color:white;
   padding:5px;
-  margin-bottom:20px;
- 
+  margin-bottom:15px;
+  margin-left: -20px;
+  transform: rotate(-15deg);
+  -webkit-transform: rotate(-15deg);
+  -moz-transform: rotate(-15deg);
+  -ms-transform: rotate(-15deg);
+  -o-transform: rotate(-15deg); 
+  
 }
 /* custom*/
 .cd-horizontal-timeline .events a::before {
@@ -137,18 +143,18 @@ Main Components
   transition: background-color 0.3s, border-color 0.3s;
 }
 .no-touch .cd-horizontal-timeline .events a:hover::after {
-  background-color: #FF3D7F;
+  background-color: #43ff3d;
   border-color: #fff;
 }
 .cd-horizontal-timeline .events a.selected {
   pointer-events: none;
 }
 .cd-horizontal-timeline .events a.selected::after {
-  background-color: #FF3D7F;
-  border-color: #FF3D7F;
+  background-color: #43ff3d;
+  border-color: #43ff3d;
 }
 .cd-horizontal-timeline .events a.older-event::after {
-  border-color: #FF3D7F;
+  border-color: #43ff3d;
 }
 @media only screen and (min-width: 1100px) {
   .cd-horizontal-timeline {
@@ -214,7 +220,7 @@ Main Components
   color: #fff;
 }
 .no-touch .cd-timeline-navigation a:hover {
-  border-color: #FF3D7F;
+  border-color: #43ff3d;
 }
 .cd-timeline-navigation a.inactive {
   cursor: not-allowed;
@@ -223,7 +229,7 @@ Main Components
   background-position: 0 -16px;
 }
 .no-touch .cd-timeline-navigation a.inactive:hover {
-  border-color: #FF3D7F;
+  border-color: #43ff3d;
 }
 
 .cd-horizontal-timeline .events-content {
