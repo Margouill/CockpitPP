@@ -14,6 +14,7 @@ body {
 	background-attachment: fixed;
 	margin: 0px;
 	padding: 0px;
+	
 }
 
 header {
@@ -36,7 +37,18 @@ header .container {
 
 }
 
+
+ol  {list-style: none;}
+li {list-style: none;}
+ul {}
+p { }
+	
+	
 h1 {
+	
+}
+
+h2 {
 	
 }
 
@@ -45,7 +57,7 @@ h3 {
 }
 
 p {
-	 
+	
 }
 
 .header_left {
@@ -125,6 +137,16 @@ a {
 	color: #eee;
 	padding-bottom: 30px;
 }
+
+.content_timeline {
+	width: 100%;
+	color: #eee;
+	padding-top: 10px;
+	padding-bottom: 30px;
+	background-color: rgba(0,0,0, 0.7);
+
+}
+
 
 .content3 {
 	width: 80%;
