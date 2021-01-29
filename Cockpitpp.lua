@@ -3,7 +3,7 @@
 --   Cockpit++ GitHub project
 --   https://github.com/Margouill/CockpitPP
 --   
---   Version : 1.5
+--   Version : 1.6
 --
 ----------------------------------------------------------------------------------
 --   Started by Astazou in 2017 and rovered by Margouill in 2020.
@@ -13,9 +13,6 @@
 -- DCS data export script
 --
 ----------------------------------------------------------------------------------
-
-
-
 
 
 
@@ -29,16 +26,14 @@ local clientIP={"192.168.1.12"}
 
 --Editable but not mandatory, put them in the app
 local DCS_PORT = 14801
-local ANDROID_PORT = 14800 
+local ANDROID_PORT = 14800
 ----------------------------------------------------------------------------------
-
-
 
 
 ----------------------------------------------------------------------------------
 --Developers, if you know what you are doing, feel free to change things here
 ----------------------------------------------------------------------------------
-local version = 5
+local version = 6
 local log_file = nil
 local lengthIPTable = 0
 local ipUsed = 1
@@ -94,6 +89,8 @@ function LuaExportBeforeNextFrame()
 		
 	else
 		data, ip, port = udp:receivefrom()
+		
+		log_file:write(ip..":"..port.."="..data.."\n")
 		
 		if data then
 	  
@@ -245,6 +242,23 @@ function LuaExportAfterNextFrame()
 				
 			elseif currentAircraft == "M-2000C" and GetDevice(0) ~= 0 then
 				local MainPanel = GetDevice(0)
+				
+				local function getVHFFrequency()
+					local li = list_indication(7)
+					local m = li:gmatch("-----------------------------------------\n([^\n]+)\n([^\n]*)\n")
+					while true do
+						local name, value = m()
+						if not name then break end
+						if name == "text_COM_UHF1"
+							then
+							value = "      "..value
+							return value:sub(7,9) .. value:sub(11,12)
+						end
+					end
+					return "         "
+				end
+								
+				
   
 				pca = MainPanel:get_argument_value(234) ..";".. MainPanel:get_argument_value(463) ..";".. MainPanel:get_argument_value(249) ..";".. MainPanel:get_argument_value(248) ..";".. MainPanel:get_argument_value(236) ..";".. MainPanel:get_argument_value(238) ..";".. MainPanel:get_argument_value(240) ..";".. MainPanel:get_argument_value(242) ..";".. MainPanel:get_argument_value(244) ..";".. MainPanel:get_argument_value(246) ..";".. MainPanel:get_argument_value(247) ..";".. MainPanel:get_argument_value(251) ..";".. MainPanel:get_argument_value(252) ..";".. MainPanel:get_argument_value(254) ..";".. MainPanel:get_argument_value(255) ..";".. MainPanel:get_argument_value(257) ..";".. MainPanel:get_argument_value(258) ..";".. MainPanel:get_argument_value(260) ..";".. MainPanel:get_argument_value(261) ..";".. MainPanel:get_argument_value(263) ..";".. MainPanel:get_argument_value(264)
 
@@ -256,12 +270,60 @@ function LuaExportAfterNextFrame()
 
 				end
 
+				VHFDisplay = getVHFFrequency()..";"
+				
+				VHFButtons = 	MainPanel:get_argument_value(950) ..";"
+							 .. MainPanel:get_argument_value(951) ..";"
 
-				ins = MainPanel:get_argument_value(669) ..";".. MainPanel:get_argument_value(670) ..";".. MainPanel:get_argument_value(671) ..";".. MainPanel:get_argument_value(564) ..";".. MainPanel:get_argument_value(565) ..";".. MainPanel:get_argument_value(566) ..";".. MainPanel:get_argument_value(567) ..";".. MainPanel:get_argument_value(568) ..";".. MainPanel:get_argument_value(569) ..";".. MainPanel:get_argument_value(574) ..";".. MainPanel:get_argument_value(575) ..";".. MainPanel:get_argument_value(571) ..";".. MainPanel:get_argument_value(668) ..";".. MainPanel:get_argument_value(573) ..";".. MainPanel:get_argument_value(577) ..";".. MainPanel:get_argument_value(579)..";".. MainPanel:get_argument_value(581)..";".. MainPanel:get_argument_value(583)..";".. MainPanel:get_argument_value(595)..";".. MainPanel:get_argument_value(597)
+				VHFReturns =      MainPanel:get_argument_value(952)..";"
+								..MainPanel:get_argument_value(953)..";"
+								..MainPanel:get_argument_value(954)..";"
+								..MainPanel:get_argument_value(955)..";"
+								..MainPanel:get_argument_value(956)..";"
+								..MainPanel:get_argument_value(957)..";"
+								..MainPanel:get_argument_value(958)..";"
+								..MainPanel:get_argument_value(959)..";"
+								..MainPanel:get_argument_value(960)..";"
+								..MainPanel:get_argument_value(961)..";"
+								..MainPanel:get_argument_value(962)..";"
+								..MainPanel:get_argument_value(963)..";"
+								..MainPanel:get_argument_value(964)..";"
+
+				
+				ins = MainPanel:get_argument_value(669) ..";"
+					.. MainPanel:get_argument_value(670) ..";"
+					.. MainPanel:get_argument_value(671) ..";"
+					.. MainPanel:get_argument_value(564) ..";"
+					.. MainPanel:get_argument_value(565) ..";"
+					.. MainPanel:get_argument_value(566) ..";"
+					.. MainPanel:get_argument_value(567) ..";"
+					.. MainPanel:get_argument_value(568) ..";"
+					.. MainPanel:get_argument_value(569) ..";"
+					.. MainPanel:get_argument_value(574) ..";"
+					.. MainPanel:get_argument_value(575) ..";"
+					.. MainPanel:get_argument_value(571) ..";"
+					.. MainPanel:get_argument_value(668) ..";"
+					.. MainPanel:get_argument_value(573) ..";"
+					.. MainPanel:get_argument_value(577) ..";"
+					.. MainPanel:get_argument_value(579)..";"
+					.. MainPanel:get_argument_value(581)..";"
+					.. MainPanel:get_argument_value(583)..";"
+					.. MainPanel:get_argument_value(595)..";"
+					.. MainPanel:get_argument_value(597)
 
 				ins_knob = MainPanel:get_argument_value(627)..";".. MainPanel:get_argument_value(629)
 				
-				msgOut = msgOut..list_indication(4)..","..list_indication(5)..","..pca..","..list_indication(6)..","..ppa..","..insdata..","..list_indication(10)..","..ins..","..ins_knob..",".." \n"
+				msgOut = msgOut	..list_indication(4)..","
+								..list_indication(5)..","
+								..pca..","
+								..list_indication(6)..","
+								..ppa..","
+								..insdata..","
+								..list_indication(10)..","
+								..ins..","
+								..ins_knob..","
+								..VHFDisplay..VHFButtons..VHFReturns..","
+								.." \n"
 
 				
 			elseif currentAircraft == "F-15C" and LoGetTWSInfo() then
@@ -378,8 +440,6 @@ function LuaExportAfterNextFrame()
 				local function getUV26Display()
 					local ind = "---"
 					local m = list_indication(7):gmatch("-----------------------------------------\n([^\n]+)\n([^\n]*)\n")
-					
-					log_file:write(list_indication(7).."\n")
 					
 					
 					while true do
@@ -521,13 +581,9 @@ function LuaExportAfterNextFrame()
 								.. MainPanel:get_argument_value(213) ..";"
 								
 				OverheadInstrument = MainPanel:get_argument_value(587) ..";"
-				
-				--log_file:write(OverheadSwitchs.."\n");
-				--log_file:write(OverheadLeds.."\n");
-				
-				--msgOut = msgOut ..PUI800Switchs..PUI800Leds..PUI800Displays..","..OverheadSwitchs..OverheadLeds..","..UV26Switchs..UV26Leds..","..PRTzLeds..","..LWRLeds
+
 				msgOut = msgOut ..PUI800Switchs..PUI800Leds..PUI800Displays..","..OverheadSwitchs..OverheadLeds..OverheadInstrument..","..UV26Switchs..UV26Leds..UV26Displays..","..PRTzLeds..","..LWRLeds
-								--..PUI800Switchs..PUI800Leds..PUI800Displays..","
+
 			--log_file:write(msgOut)
 			end
 			
@@ -563,23 +619,3 @@ function LuaExportStop()
    	log_file = nil
    end
 end
-
-
-
-
-----------------------------------------------------------------------------------
---
---
---     _         Spitfire
---   |   \       Murray "Moray" Lalor
---  | |    \
--- |  |     \                               __---___
--- |  |      \ _____________---------------^      | ^\
---  | | =======--_               ___     \________|__*^--------------__________
---   ^-____                    /  _  \    Capt. Moray  #######     ********  | \
---        * -----_______      (  (_)  )                ###                  _ -'
---                      -------\____ /                                __ - '
---                                   -----======________:----------- '
---
---
--- source: http://xcski.com/~ptomblin/planes.txt
