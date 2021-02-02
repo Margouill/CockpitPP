@@ -97,6 +97,67 @@
 			</div>
 			
 		</div>	
+		
+		<div class=content>
+			<div class=content3>
+				<center><h1>How to make DCS communicating with the app?</h1></center>
+				<p>To communicate by wifi, your Android and your DCS must know the IP address of each other, you will find here the steps to configure everything.</p>
+				<p>1.	Download the <b>Cockpit++.lua</b> from here: 
+					<u><a href="https://github.com/Margouill/CockpitPP/blob/main/Cockpitpp.lua" target="_blank" style="color: blue;">https://github.com/Margouill/CockpitPP/blob/main/Cockpitpp.lua</a></u>
+					<hr>
+				</p>
+				<p>2.	Go in <u><i>C:\Users\yourUser\Saved Games\DCS\Scripts</i></u> folder (create it if not exist)<hr></p>
+				<p>
+					3.	Open the <b>export.lua</b> file (create it if not exist) and add the line:<br>
+					 <p><span style="background-color: #c0c0c0;"><i>local Cockpitpp=require(\'lfs\');dofile(Cockpitpp.writedir()..\'Scripts/Cockpitpp.lua\')</i></span></p>
+
+					<p>If you don't know how to create the Export.lua file, you can take the one you downloaded with Cockpitpp.lua </p>
+					<hr>
+				</p>
+
+				<p>4.	In the same folder, add the file <b>Cockpitpp.lua</b><hr></p>
+				<p>
+					5.	Open the <b>Cockpitpp.lua</b> and add the IP address of your Android phone (You will find the Android IP in the Cockpit++ application, in "settings", 
+					you must be connected by wifi on the same network than your computer) 
+					
+					<p>For example, if you Android IP is <b>192.168.0.12</b>, you must write: <br>
+						<img src="./img/ip1.png" >
+					</p>
+					
+					<p>Of course you can use several Android devices in the same time, just add other Android IP if you want to use Cockpit++ with more than 1 device:<br>
+						<img src="./img/ip2.png" >
+					</p>
+					<hr>
+				<p>
+					6.	In the app, go to <i>Settings</i>, add your computer's IP. You will get your computer's IP by doing:
+					<ul>
+						<li>-	Windows touch + "R"</li>
+						<li>-	Typing "cmd" and pressing "enter"</li>
+						<li>-	Typing "ipconfig" in the console</li>
+						<li>-	Get your ipv4 address</li>
+						<li>-	By default ports are configured even if these seem empty, but you can manage them, just be sure you are using the same ports in you app and <b>Cockpitpp.lua</b></li>
+					</ul>
+					<hr>
+				</p>
+
+
+				<p>7.	Now <u>start a mission, remove the pause, startup your plane</u> and it should work.<hr></p>
+				<p>8.	Not working? check the previous steps and/or restart the app.<hr></p>
+				<p>9.	Still not working? Then go in <b><u><i>Not working?</i></u></b> in the app, you will have some ideas of possible problems with the solution.<hr></p>
+
+				<p><b>Trick :</b> the LUA files must be saved <u>before</u> you launch DCS.</p>
+
+				<p>Good flight sir!</p> 
+
+				
+				
+				
+				<div style="clear: both;"></div>
+			</div>
+			
+		</div>
+		
+		
 		<div class=content_timeline>
 			<div class=content3>
 				<section class="cd-horizontal-timeline">
@@ -208,6 +269,8 @@
 			</div>
 			
 		</div>
+	
+		
 	
 		<div class=content>
 			<div class=content3>
